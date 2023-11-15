@@ -32,11 +32,11 @@ var lengthOfLongestSubstring = function (s) {
       if (longest < bag.length) {
         longest = bag.length;
       }
+      // move back pos to next starting char
+      pos -= bag.length;
       // empty bag and clear uniqueSet
       uniqueSet.clear();
       bag = [];
-      // try pos again
-      pos--;
     }
   }
   return longest < bag.length ? bag.length : longest;
