@@ -21,11 +21,10 @@ var reorderList = function (head) {
   if (!head || !head.next) {
     return head;
   }
-  let current = head;
-  let turtle = head;
-  let rabbit = head;
 
   // 2: find mid point
+  let turtle = head;
+  let rabbit = head;
   while (turtle.next && rabbit.next.next) {
     // rabbit runs 2x speed of turtle - will arrive in half time
     // turtle ends up being midpoint when rabbit finishes race
@@ -33,12 +32,38 @@ var reorderList = function (head) {
     rabbit = rabbit.next.next;
   }
 
-  // 3: separate link lists
+  // 3: take right list and reverse
+  let previous = null;
+  let current = turtle.next;
 
-  // 4: take right list and reverse
+  while (current) {
+    // save next by storing to temp
+    let temp = current.next;
+    // point previous to next
+    current.next = previous;
+    // point current to previous
+    previous = current;
+    // point temp (next) to current
+    current = temp;
+  }
+  turtle.next = null;
 
-  // 5:
-  return current;
+  // 4: merge alternately
+  let first = head;
+  let second = previous;
+
+  while (first && second) {
+    let temp1 = first.next;
+    let temp2 = second.next;
+
+    first.next = second;
+    second.next = temp1;
+
+    first = temp1;
+    second = temp2;
+  }
+
+  return head;
 };
 
 // @lc code=end
