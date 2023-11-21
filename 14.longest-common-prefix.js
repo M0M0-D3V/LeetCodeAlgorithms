@@ -16,22 +16,22 @@ var longestCommonPrefix = function (strs) {
   if (strs[0][0] !== strs[1][0]) {
     return "";
   }
-  let firstWord = strs[0].split("");
-  let index = 0;
-  for (let str of strs) {
-    index++;
+
+  // 0. create string variable
+  let temp = "";
+  // 1. loop all strings
+  for (let i = 0; i < strs[0].length; i++) {
+    // 2. check first char of first string with next strings
+    let char = strs[0][i];
+    console.log(`char is: ${char}`);
+    // 3. if all strings have it, add char to string variable
+    for (let j = 0; j < strs.length; j++) {
+      if (char != strs[j][i]) {
+        return temp;
+      }
+    }
+    temp += char;
   }
-  //   let str = strs[i];
-  //   let char = str[i];
-  //   console.log(str);
-  //   console.log(char);
-  //   console.log(firstWord[i]);
-  //   if (char == firstWord[i] && !check.includes(char)) {
-  //     check.push(char);
-  //   } else if (char != firstWord[i]) {
-  //     check.pop();
-  //   }
-  // }
-  // return check.join("");
+  return temp;
 };
 // @lc code=end
