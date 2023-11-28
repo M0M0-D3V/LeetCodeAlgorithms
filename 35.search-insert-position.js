@@ -11,8 +11,37 @@
  * @return {number}
  */
 var searchInsert = function (nums, target) {
-  // search using midpoint
-  // if nums contains target, return index found
-  // if no target, return to place
+  let len = nums.length;
+  let last = len - 1;
+  let start = 0;
+  // check beginning
+  if (target < nums[start]) {
+    return 0;
+  }
+  // check end
+  if (target > nums[last]) {
+    return len;
+  }
+  // compare target to middle
+  while (start <= last) {
+    len = last - start;
+    let mid = Math.floor((start + last) / 2);
+
+    console.log(`start ${start}; mid ${mid}; last ${last}`);
+
+    if (target === nums[mid]) {
+      return mid;
+    } else if (nums[mid] < target) {
+      start = mid + 1;
+    } else {
+      end = mid - 1;
+    }
+  }
+
+  return start;
 };
 // @lc code=end
+
+// @after-stub-for-debug-begin
+module.exports = searchInsert;
+// @after-stub-for-debug-end
