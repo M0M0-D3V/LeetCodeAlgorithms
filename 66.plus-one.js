@@ -10,10 +10,22 @@
  * @return {number[]}
  */
 var plusOne = function (digits) {
-  let toString = digits.join("");
-  toString++;
-  console.log(toString);
-  return Array.from(toString.toString());
+  let index = digits.length - 1;
+  for (index; index >= 0; index--) {
+    digits[index]++;
+    if (digits[index] < 10) {
+      return digits;
+    } else if (digits[index] == 10 && index == 0) {
+      digits[index] = 0;
+      let placeholder = [1].concat(digits);
+      digits = placeholder;
+      return digits;
+    } else {
+      digits[index] = 0;
+      continue;
+    }
+  }
+  return digits;
 };
 // @lc code=end
 
