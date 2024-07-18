@@ -9,8 +9,13 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-var threeSum = function(nums) {
-    
+var threeSum = function (nums) {
+  if (nums.length == 3 && nums[0] + nums[1] + nums[2] != 0) {
+    return [];
+  }
+  nums.sort();
+  if (nums[0] > 0) {
+    return [];
+  }
 };
 // @lc code=end
-
