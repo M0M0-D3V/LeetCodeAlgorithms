@@ -10,19 +10,27 @@
  * @return {number[]}
  */
 var productExceptSelf = function (nums) {
-  let idx = 0;
-  let answer = [];
-  while (idx < nums.length) {
-    answer[idx] = 1;
-    for (let i = 0; i < nums.length; i++) {
-      if (i != idx) {
-        answer[idx] = answer[idx] * nums[i];
-      }
-    }
-    idx++;
+  let n = nums.length;
+  // hold answers in answers array
+  let answers = [];
+  let leftProd = [];
+  let rightProd = [];
+
+  leftProd[0] = 1;
+  rightProd[n - 1] = 1;
+
+  for (let i = 1; i < n; i++) {
+    leftProd[i] = leftProd[i - 1] * nums[i - 1];
   }
-  console.log(answer);
-  return answer;
+
+  for (let i = n - 2; i >= 0; i--) {
+    rightProd[i] = rightProd[i + 1] * nums[i + 1];
+  }
+
+  for (let i = 0; i < n; i++) {
+    answers[i] = leftProd[i] * rightProd[i];
+  }
+  return answers;
 };
 // @lc code=end
 
